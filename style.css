@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to right, #020024, #4a6166);
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #b87777;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+h2{
+    font-size: 3rem;
+    background: linear-gradient(#e66465, #9198e5);
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+h2:hover {
+    background: #9198e5;
+}
+
+/* ===== CAMPO COM EFEITO ===== */
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  position: relative;
+  padding-bottom: 8px;
+  overflow: hidden;
+}
+
+.rotulo {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  background: linear-gradient(90deg, #00dbde, #0531f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.campo:focus-within .rotulo {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Linha cinza fixa (1 linha só) */
+.campo::before {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background: #ccc;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* Linha gradiente que vem de lado */
+.campo::after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #00dbde, #0531f7);
+  transform: translateX(-100%);
+  transition: 0.4s ease;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.campo:focus-within::after {
+  transform: translateX(0);
+}
+
+.input-linha{
+  background-color: transparent;
+  border: none; /* SEM BORDA AQUI, a borda é o ::before e ::after */
+  width: 100%;
+  font-size: 16px;
+  outline: none;
+  padding: 8px 0;
+  color: #fff;
+}
+
+/* Cor do texto que você DIGITA */
+.input-linha {
+  color: white;
+}
+
+/* Cor do texto de dentro "Digita seu nome..." */
+.input-linha::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* branco meio transparente */
+  font-style: italic;
+}
+
+/* Quando clica, o placeholder fica mais forte */
+.input-linha:focus::placeholder {
+  color: white;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #b87777;
+    padding: 50px;
+    border-radius: 10px;
+    position: relative;
+    
+    /* brilho */
+    box-shadow: 0 0 20px #00dbde;
+    animation: brilho 2s infinite alternate;
+}
+
+@keyframes brilho {
+  from {
+    box-shadow: 0 0 15px #00dbde, 0 0 25px #0531f7;
+  }
+  to {
+    box-shadow: 0 0 25px #00dbde, 0 0 50px #0531f7, 0 0 70px #00dbde;
+  }
+}
+
+.btn-neon {
+  position: relative;
+  padding: 15px 40px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00dbde;
+  background: transparent;
+  border: 1px solid #00dbde;
+  border-radius: 5px;
+  cursor: pointer;
+  letter-spacing: 3px;
+  overflow: hidden;
+  transition: 0.3s;
+  text-transform: uppercase;
+}
+
+/* EFEITO 1: BRILHA QUANDO TOCA */
+.btn-neon:hover {
+  background: #00dbde;
+  color: #020024;
+  box-shadow: 
+    0 0 10px #00dbde,
+    0 0 30px #00dbde,
+    0 0 60px #00dbde;
+}
+
+/* EFEITO 2: LUZ RODANDO EM VOLTA */
+.btn-neon span {
+  position: absolute;
+  display: block;
+}
+
+/* linha de cima - corre pra direita */
+.btn-neon span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00dbde);
+  animation: correr1 1s linear infinite;
+}
+
+/* linha da direita - corre pra baixo */
+.btn-neon span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #00dbde);
+  animation: correr2 1s linear infinite;
+  animation-delay: 0.25s;
+}
+
+/* linha de baixo - corre pra esquerda */
+.btn-neon span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #00dbde);
+  animation: correr3 1s linear infinite;
+  animation-delay: 0.5s;
+}
+
+/* linha da esquerda - corre pra cima */
+.btn-neon span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #00dbde);
+  animation: correr4 1s linear infinite;
+  animation-delay: 0.75s;
+}
+
+@keyframes correr1 {
+  0% { left: -100%; }
+  50%,100% { left: 100%; }
+}
+@keyframes correr2 {
+  0% { top: -100%; }
+  50%,100% { top: 100%; }
+}
+@keyframes correr3 {
+  0% { right: -100%; }
+  50%,100% { right: 100%; }
+}
+@keyframes correr4 {
+  0% { bottom: -100%; }
+  50%,100% { bottom: 100%; }
+}
